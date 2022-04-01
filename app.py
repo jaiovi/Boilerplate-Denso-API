@@ -1,0 +1,38 @@
+
+from flask import Flask
+from flask_cors import CORS
+from flask_restful import Api
+from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController
+from flask_migrate import Migrate
+from database import db, bcrypt
+
+
+app = Flask(__name__)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@127.0.0.1/DensoDB"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+
+CORS(app)
+api = Api(app)
+db.init_app(app)
+bcrypt.init_app(app)
+migrate = Migrate(app, db, directory="./database/migrations")
+
+
+
+
+api.add_resource(UserController, "/user")
+api.add_resource(UserLoginController, "/user/login")
+
+api.add_resource(UserControllerFindUser, "/user/search")
+
+
+
+
+"""
+app
+    - models
+    - services
+    - controllers
+application.py
+"""
