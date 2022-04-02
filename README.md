@@ -1,5 +1,5 @@
 # Denso API
-Construccion propia en los modelos. Para que todos tengan a mano
+Construccion propia en los modelos. Para que todos lo tengan a mano para reto equipo 2 tc2005b Denso.
 
 ## Procedimiento de instalación
 
@@ -9,7 +9,7 @@ Construccion propia en los modelos. Para que todos tengan a mano
     Mac Linux -> virtualenv venv
     Windows ->  python -m virtualenv venv
 
-3. Iniciar el ambiente virtual SIEMPRE HAZLO
+3. Iniciar el ambiente virtual **SIEMPRE HAZLO (venv)**
     Mac Linux -> source ./venv/bin/activate
     Windows -> .\venv\Scripts\activate
 
@@ -30,7 +30,7 @@ Construccion propia en los modelos. Para que todos tengan a mano
 
 
 Inicar de nuevo el proyecto 
-1. Iniciar el ambiente virtual IMPORTANTE
+1. Iniciar el ambiente virtual **IMPORTANTE**
     Mac Linux -> source ./venv/bin/activate
     Windows -> .\venv\Scripts\activate
 
@@ -39,7 +39,7 @@ Inicar de nuevo el proyecto
     python -m flask run
 
 
-Migrara y atuzalizar la base de datos. Recuerda abrir el XAMPP
+Migrar y atuzalizar la base de datos. **Recuerda abrir el XAMPP**
 1. Migracion de la bd
     python -m flask db migrate
 

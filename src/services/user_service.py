@@ -16,12 +16,13 @@ class UserServices:
 
 
     @staticmethod
-    def create_user(name, email, password, validate_password):
+    def create_user(name, email, password, validate_password):##, last_name, role, location, age, managerPerm):
 
         if password != validate_password:
             return {"message":"Las contraseñas son diferentes", "success":False}, 400
          
         new_user = User(name=name, email=email, password=password)
+        #new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, age=age, managerPerm=managerPerm)
 
         db.session.add(new_user)
         db.session.commit()

@@ -12,6 +12,11 @@ class User(db.Model):
     #password = db.Column(db.String(255), nullable=True)
     password_hash = db.Column(db.String(255), nullable=True)
 
+    #last_name = db.Column(db.String(255), nullable=True)
+    #role = db.Column(db.String(255), nullable=True)
+    #location = db.Column(db.String(255), nullable=True)
+    #age = db.Column(db.Integer, nullable=True)
+    #managerPerm = db.Column(db.Boolean, nullable=True)
 
     @property
     def password(self):
