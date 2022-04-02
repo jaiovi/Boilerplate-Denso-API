@@ -5,15 +5,16 @@ from flask_restful import Resource
 from src.services.user_service import UserServices
 
 class UserDto:
-    candidato = {
-        "name":fields.String,
-        "email":fields.String,
+    resultado = {
+        "game":fields.String,
+        "score":fields.Integer,
+        "time":fields.Integer
     }
 
     user = {
         "name":fields.String,
         "email":fields.String,
-        "candidatos": fields.List(fields.Nested(candidato)),
+        "resultados": fields.List(fields.Nested(resultado)),
     }
 
     response = {
