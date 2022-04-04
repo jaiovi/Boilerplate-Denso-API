@@ -15,7 +15,8 @@ class User(db.Model):
     last_name = db.Column(db.String(255), nullable=True)
     role = db.Column(db.String(255), nullable=True)
     location = db.Column(db.String(255), nullable=True)
-    age = db.Column(db.Integer, nullable=True)
+    #age = db.Column(db.Integer, nullable=True)
+    birthDate = db.Column(db.Date, nullable=True)
     managerPerm = db.Column(db.Boolean, nullable=True)
 
     @property

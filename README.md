@@ -16,7 +16,7 @@ Construccion propia en los modelos. Para que todos lo tengan a mano para reto eq
 4. Instalar la librerias
     pip install -r requirements.txt
 
-5. Inicar la base de datos 
+5. Inicar la base de datos **Primero crear desde PHPmyadmin la DB**
     python -m flask db init
 
 6. Realiza la migracion de la bd

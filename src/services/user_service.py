@@ -1,5 +1,5 @@
 from src.models.user import User
-from src.models.candidato import Candidato
+from src.models.resultado import Resultado
 from src.models.session import Session
 from database import db
 
@@ -16,13 +16,13 @@ class UserServices:
 
 
     @staticmethod
-    def create_user(name, email, password, validate_password):##, last_name, role, location, age, managerPerm):
+    def create_user(name, email, password, validate_password, last_name, role, location, managerPerm): #nos falta age
 
         if password != validate_password:
             return {"message":"Las contraseñas son diferentes", "success":False}, 400
          
         #new_user = User(name=name, email=email, password=password)
-        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, age=age, managerPerm=managerPerm)
+        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm) #nos falta age
 
         db.session.add(new_user)
         db.session.commit()
