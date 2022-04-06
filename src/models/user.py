@@ -21,7 +21,7 @@ class User(db.Model):
     
     managerPerm = db.Column(db.Boolean, nullable=True) ##para React 
     manager_id = db.Column(db.Integer, nullable=True) ##FK bd
-    manager = relationship("User", backref=backref("Aplicantes", uselist=True))
+    # manager = relationship("User", backref=backref("Aplicantes", uselist=True))
 
 
     @property
