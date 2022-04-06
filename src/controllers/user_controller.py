@@ -3,6 +3,7 @@ from flask import request
 from flask_restful import fields, marshal_with
 from flask_restful import Resource
 from src.services.user_service import UserServices
+from src.models import game
 
 class UserDto:
     partida = {

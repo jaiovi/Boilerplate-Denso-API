@@ -8,7 +8,7 @@ class Answer(db.Model):
     details = db.Column(db.String(255), nullable=True)
 
     question_id = db.Column(db.Integer, db.ForeignKey("question.question_id"))
-    question = relationship("Questions", backref=backref("answers", uselist=True))
+    question = relationship("Question", backref=backref("answers", uselist=True))
 
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
-    user = relationship("Users", backref=backref("users", uselist=True))
+    user = relationship("User", backref=backref("users", uselist=True))
