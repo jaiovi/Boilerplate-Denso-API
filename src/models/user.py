@@ -17,7 +17,10 @@ class User(db.Model):
     location = db.Column(db.String(255), nullable=True)
     #age = db.Column(db.Integer, nullable=True)
     birthDate = db.Column(db.Date, nullable=True)
-    managerPerm = db.Column(db.Boolean, nullable=True)
+    
+    managerPerm = db.Column(db.Boolean, nullable=True) ##para React 
+    manager_id = db.Column(db.Integer, nullable=True) ##FK bd
+    
 
     @property
     def password(self):

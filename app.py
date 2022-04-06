@@ -24,7 +24,8 @@ migrate = Migrate(app, db, directory="./database/migrations")
 api.add_resource(UserController, "/user")
 api.add_resource(UserLoginController, "/user/login")
 
-api.add_resource(UserControllerFindUser, "/user/search")
+#incio de clase 6 abril
+api.add_resource(UserControllerFindUser, "/user/search/<user_id>")
 
 
 

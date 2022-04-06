@@ -5,7 +5,7 @@ from flask_restful import Resource
 from src.services.user_service import UserServices
 
 class UserDto:
-    resultado = {
+    partida = {
         "game":fields.String,
         "score":fields.Integer,
         "time":fields.Integer
@@ -14,7 +14,7 @@ class UserDto:
     user = {
         "name":fields.String,
         "email":fields.String,
-        "resultados": fields.List(fields.Nested(resultado)),
+        "partidas": fields.List(fields.Nested(partida)),
     }
 
     response = {

@@ -1,6 +1,10 @@
 from src.models.user import User
-from src.models.resultado import Resultado
+from src.models.partida import Partida
 from src.models.session import Session
+
+from src.models.question import Question
+from src.models.game import Game
+from src.models.answer import Answer
 from database import db
 
 class UserServices:
