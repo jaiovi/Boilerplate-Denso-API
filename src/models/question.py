@@ -8,4 +8,5 @@ class Question(db.Model):
     details = db.Column(db.String(255), nullable=True)
 
     testFK_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
-    test = relationship("test", backref=backref("question", uselist=True))
+    test = relationship("Test", backref=backref("question", uselist=True))
+    
