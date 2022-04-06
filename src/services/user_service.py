@@ -6,6 +6,7 @@ from src.models.question import Question
 from src.models.game import Game
 from src.models.answer import Answer
 from database import db
+import re
 
 class UserServices:
     @staticmethod
@@ -22,8 +23,11 @@ class UserServices:
     @staticmethod
     def create_user(name, email, password, validate_password, last_name, role, location, managerPerm): #nos falta age
 
+        if email != "^\w+(@denso.com)$":
+            return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
+
         if password != validate_password:
-            return {"message":"Las contraseñas son diferentes", "success":False}, 400
+            return {"message":"Las contraseñas son diferentes.", "success":False}, 400
          
         #new_user = User(name=name, email=email, password=password)
         new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm) #nos falta age
