@@ -23,4 +23,4 @@ class Partida(db.Model):
     time = db.Column(db.Integer, nullable=True)
 
     timeStamp = db.Column(db.Date, nullable=True)
-    status = name = db.Column(db.String(255), nullable=True)
+    status = db.Column(db.String(255), nullable=True)
