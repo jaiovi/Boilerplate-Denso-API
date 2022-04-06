@@ -9,6 +9,15 @@ from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
 class UserServices:
+    '''
+    @marshal_with(UserDto.response)
+    def post(self):
+        data=request.json
+        print(data)
+        print((not "namex" in data))
+        if not "namex" in data:
+    '''        
+
     @staticmethod
     def get_user():
         user = User.current_user()
@@ -30,7 +39,7 @@ class UserServices:
             return {"message":"Las contraseñas son diferentes.", "success":False}, 400
          
         #new_user = User(name=name, email=email, password=password)
-        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm) #nos falta age
+        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm, manager_id=manager_id) #nos falta age
 
         db.session.add(new_user)
         db.session.commit()
@@ -48,7 +57,7 @@ class UserServices:
             return {"message":"Contraseña incorrecta", "success":False}, 404
 
         session = Session.open()
-        session.set("user_id",user.id )
+        session.set("user_id",user.user_id )
         session.save()
 
         print(session.get("token"))
