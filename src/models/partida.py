@@ -16,7 +16,7 @@ class Partida(db.Model):
     player_id = db.Column(db.Integer, db.ForeignKey("user.user_id")) #user
     player = relationship("User", backref=backref("partidas", uselist=True))
 
-    gameFK_id = db.Column(db.Integer, db.ForeignKey("game.game_id"))
+    game_id = db.Column(db.Integer, db.ForeignKey("game.game_id"))
     game = relationship("Game", backref=backref("partidas", uselist=True))
 
     score = db.Column(db.Integer, nullable=True)

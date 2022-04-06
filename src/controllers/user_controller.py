@@ -6,16 +6,24 @@ from src.services.user_service import UserServices
 
 class UserDto:
     partida = {
-        "game":fields.String,
+        "game":fields.List(fields.Nested(game)),
         "score":fields.Integer,
         "time":fields.Integer
     }
 
     user = {
         "name":fields.String,
+        "last_name":fields.String(attribute="last_name"),
         "email":fields.String,
+        "birthDate":fields.DateTime,
+        "role":fields.String,
+        "location":fields.String,
         "partidas": fields.List(fields.Nested(partida)),
+        
+        "managerPerm":fields.Boolean,
+        "aplicantes":fields.List(fields.Nested(super)),
     }
+    ##OJO a aplicantes, posible punto de error
 
     response = {
         "data": fields.Nested(user),
@@ -38,7 +46,7 @@ class UserControllerFindUser(Resource):
     @marshal_with(UserDto.response)
     def post(self):
         data = request.json
-        return UserServices.get_user(data["id"])
+        return UserServices.get_user(data["user_id"])
 
 
 class UserLoginController(Resource):

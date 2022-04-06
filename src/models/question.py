@@ -7,6 +7,6 @@ class Question(db.Model):
     question_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     details = db.Column(db.String(255), nullable=True)
 
-    testFK_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
+    test_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
     test = relationship("Test", backref=backref("question", uselist=True))
     

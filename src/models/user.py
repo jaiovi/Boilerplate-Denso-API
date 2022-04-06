@@ -1,5 +1,6 @@
 from database import db, bcrypt
 from flask import request
+from sqlalchemy.orm import relationship, backref
 
 from .session import Session
 
@@ -20,7 +21,8 @@ class User(db.Model):
     
     managerPerm = db.Column(db.Boolean, nullable=True) ##para React 
     manager_id = db.Column(db.Integer, nullable=True) ##FK bd
-    
+    manager = relationship("User", backref=backref("Aplicantes", uselist=True))
+
 
     @property
     def password(self):

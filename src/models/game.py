@@ -8,6 +8,6 @@ class Game(db.Model):
     gameName = db.Column(db.String(255), nullable=True)
     habilidad = db.Column(db.String(255), nullable=True)
 
-    testFK_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
+    test_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
     test = relationship("Test", backref=backref("games", uselist=True))
     
