@@ -36,7 +36,7 @@ class UserController(Resource):
     def post(self):
         data = request.json
         print(data)
-        return UserServices.create_user(data["name"],data["email"], data["password"], data["validate_password"])
+        return UserServices.create_user(data["name"],data["email"], data["password"], data["password2"])
     
     @marshal_with(UserDto.response)
     def get(self):
