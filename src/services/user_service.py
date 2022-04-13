@@ -32,7 +32,7 @@ class UserServices:
     @staticmethod
     def create_user(name, email, password, validate_password, last_name, role, location, managerPerm): #nos falta age
 
-        if email != "^\w+(@denso.com)$":
+        if email != "^\w+(@na.denso.com)$":
             return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
 
         if password != validate_password:
