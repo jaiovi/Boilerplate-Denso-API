@@ -22,7 +22,7 @@ Construccion propia en los modelos. Para que todos lo tengan a mano para reto eq
 6. Realiza la migracion de la bd
     python -m flask db migrate
 
-7. Aplicar los cambios a la bd
+7. Aplicar los cambios a la bd **Siempre hazlo al hacerle pull del master**
     python -m flask db upgrade
 
 8. Corre el servidor
