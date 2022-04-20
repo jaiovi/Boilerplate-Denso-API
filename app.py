@@ -6,7 +6,8 @@ from src.controllers.user_controller import UserController, UserControllerFindUs
 from flask_migrate import Migrate
 from database import db, bcrypt
 
-
+# endpoint,: url que va a llaamar a ese pedazo de código. Por jejemplo: www.maquinaJD.0001/Marcador
+# cuando se pone marcador, se que ese pedazo de código es el que se debe de ejecutar
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:@127.0.0.1/DensoDB"
