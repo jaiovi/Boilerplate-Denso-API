@@ -66,19 +66,7 @@ class UserServices:
         
         return {"message":"Login exitoso","token":session.get("token"), "success":True} 
 
-    ###SERVICIOS NUEVOS
-    @staticmethod
-    def execConsultaMinijuego(myid):
-        ConsMinijuego = db.session.execute(sqlalchemy.text("CALL SP_ConsultaMinijuego(:param)"), {"param":myid}).fetchall()
-        ##arreglo 2D, 
-
-        print(ConsMinijuego) ##correcta, no diccionario yet
-
-        #elemento cursor > diccionario
-        #directamente con tus modelos.
-        minijuegos = Partida.query.filter_by(player_id=myid).all()
-        print(minijuegos)
-        return minijuegos
+    
 
 '''
 def execConsultaPerfil(myid)

@@ -20,4 +20,5 @@ class Game(db.Model):
         total = 0
         for q in self.questions:
             total = total + q.answer.scale_num
+            print(q)
         return total

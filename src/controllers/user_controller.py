@@ -65,9 +65,3 @@ class UserLoginController(Resource):
         data = request.json
         print(data)
         return UserServices.login(data["email"], data["password"])
-
-##21 abril
-class ConsultaMinijuegoController(Resource):
-    @marshal_with(UserDto.partida)
-    def get(self, myid):
-        return UserServices.execConsultaMinijuego(myid)
