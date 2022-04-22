@@ -7,9 +7,8 @@ from src.models import game
 
 class UserDto:
     partida = {
-        "game":fields.List(fields.Nested(game)),
-        "score":fields.Integer,
-        "time":fields.Integer
+        "minijuego":fields.String(attribute="game.gameName"),
+        "score":fields.Integer
     }
 
     user = {
@@ -30,6 +29,17 @@ class UserDto:
         "data": fields.Nested(user),
         "message":fields.String
     }
+
+    #STORED PROCEDURES
+    ConsMinijuego = {
+        "minijuego":fields.String,
+        "score":fields.Integer
+    }
+    ConsPsicometrico = {
+        "seccionPsico":fields.String,
+        "score":fields.Integer
+    }
+    ConsPregunta={"details":fields.String}
     
 class UserController(Resource):
    
@@ -55,3 +65,9 @@ class UserLoginController(Resource):
         data = request.json
         print(data)
         return UserServices.login(data["email"], data["password"])
+
+##21 abril
+class ConsultaMinijuegoController(Resource):
+    @marshal_with(UserDto.partida)
+    def get(self, myid):
+        return UserServices.execConsultaMinijuego(myid)
