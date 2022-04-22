@@ -8,6 +8,8 @@ from src.models.answer import Answer
 from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
+import sqlalchemy
+
 class UserServices:
     '''
     @marshal_with(UserDto.response)
@@ -63,3 +65,31 @@ class UserServices:
         print(session.get("token"))
         
         return {"message":"Login exitoso","token":session.get("token"), "success":True} 
+
+    ###SERVICIOS NUEVOS
+    @staticmethod
+    def execConsultaMinijuego(myid):
+        ConsMinijuego = db.session.execute(sqlalchemy.text("CALL SP_ConsultaMinijuego(:param)"), {"param":myid}).fetchall()
+        ##arreglo 2D, 
+
+        print(ConsMinijuego) ##correcta, no diccionario yet
+
+        #elemento cursor > diccionario
+        #directamente con tus modelos.
+        minijuegos = Partida.query.filter_by(player_id=myid).all()
+        print(minijuegos)
+        return minijuegos
+
+'''
+def execConsultaPerfil(myid)
+    consulta = db.session.execute(sqlalchemy.text("CALL SP_ConsultaMinijuego(:param)"), param=myid)
+    return consulta
+
+def getPregunta(mypreguntaid) #para el videojuego
+    ConsPregunta = Question.query.filter_by(mypreguntaid=session.get("question_id")).first()
+    return ConsPregunta
+def postRespuesta(myid, mypreguntaid, myrespuesta)
+    new_answer = Answer(question_id=mypreguntaid, user_id=myid, scale_num=myrespuesta)
+    db.session.add(new_answer)
+    db.session.commit
+    return {"message":"Respuesta anadida", "success":True}'''
