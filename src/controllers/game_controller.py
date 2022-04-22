@@ -14,6 +14,10 @@ class GameDto:
         "seccionPsico":fields.String,
         "puntos":fields.Integer
     }
+    pregunta = {
+        "question_id":fields.Integer,
+        "details":fields.String
+    }
 
 ##21 abril
 class ConsultaMinijuegoController(Resource):

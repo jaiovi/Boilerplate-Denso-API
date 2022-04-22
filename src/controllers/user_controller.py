@@ -65,3 +65,13 @@ class UserLoginController(Resource):
         data = request.json
         print(data)
         return UserServices.login(data["email"], data["password"])
+
+class CandidatoController(Resource):
+    @marshal_with(UserDto.response)
+    def get(self, myid):
+        return UserServices.get_user_candidate(myid)
+
+class DeleteCandidatoController(Resource): #REVISAR
+    @marshal_with(UserDto.response)
+    def get(self, myid):
+        return UserServices.delete_user_candidate(myid)

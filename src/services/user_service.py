@@ -23,13 +23,10 @@ class UserServices:
     @staticmethod
     def get_user():
         user = User.current_user()
-        
-
         if not user:
             return {"message":"Usuario inexistente", "data":user}
 
         return {"message":"Usuario encontrado", "data":user}
-
 
     @staticmethod
     def create_user(name, email, password, validate_password, last_name, role, location, managerPerm): #nos falta age
@@ -66,18 +63,16 @@ class UserServices:
         
         return {"message":"Login exitoso","token":session.get("token"), "success":True} 
 
+    @staticmethod
+    def get_user_candidate(user_id):
+        candidato = User.query.filter_by(user_id=user_id, managerPerm=0).first()
+        #candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaPerfil(:param)"), {"param":user_id}).fetchall()
+        print(candidato)
+        return {"message":"Candidato existente", "data":candidato}
     
-
-'''
-def execConsultaPerfil(myid)
-    consulta = db.session.execute(sqlalchemy.text("CALL SP_ConsultaMinijuego(:param)"), param=myid)
-    return consulta
-
-def getPregunta(mypreguntaid) #para el videojuego
-    ConsPregunta = Question.query.filter_by(mypreguntaid=session.get("question_id")).first()
-    return ConsPregunta
-def postRespuesta(myid, mypreguntaid, myrespuesta)
-    new_answer = Answer(question_id=mypreguntaid, user_id=myid, scale_num=myrespuesta)
-    db.session.add(new_answer)
-    db.session.commit
-    return {"message":"Respuesta anadida", "success":True}'''
+    @staticmethod #REVISAR
+    def delete_user_candidate(user_id):
+        candidato = User.query.delete(user_id=user_id, managerPerm=0).first()
+        candidato.execute()
+        #https://stackoverflow.com/questions/9882358/how-to-delete-rows-from-a-table-using-an-sqlalchemy-query-without-orm
+        return {"message":"Candidato eliminado", "data":[]}
