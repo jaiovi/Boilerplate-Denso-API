@@ -25,3 +25,8 @@ class GameServices:
         ##psicometrico = Game.query.join(Question).filter(Answer.user_id==myid).all()
         print(psicometrico)
         return psicometrico
+'''
+    @staticmethod
+    def execPregunta(mypreguntaid)
+        pregunta = Question.query.filter_by(question_id=mypreguntaid).first()
+'''

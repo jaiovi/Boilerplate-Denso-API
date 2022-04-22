@@ -2,7 +2,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
-from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController
+from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController
 from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController
 from flask_migrate import Migrate
 from database import db, bcrypt
@@ -24,6 +24,8 @@ migrate = Migrate(app, db, directory="./database/migrations")
 
 
 api.add_resource(UserController, "/user")
+api.add_resource(CandidatoController, "/candidato/<myid>")
+api.add_resource(DeleteCandidatoController, "/candidato/<myid>/delete") #REVISAR
 api.add_resource(UserLoginController, "/user/login")
 
 #incio de clase 6 abril
