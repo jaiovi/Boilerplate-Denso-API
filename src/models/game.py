@@ -14,4 +14,10 @@ class Game(db.Model):
 
     test_id = db.Column(db.Integer, db.ForeignKey("test.test_id"))
     test = relationship("Test", backref=backref("games", uselist=True))
-    
+
+    @property
+    def sumaTotal(self):
+        total = 0
+        for q in self.questions:
+            total = total + q.answer.scale_num
+        return total
