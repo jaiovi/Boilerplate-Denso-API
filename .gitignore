@@ -1,16 +1,2 @@
 /venv
 *.pyc
-*.pyc
-*.pyc
-__pycache__/app.cpython-310.pyc
-__pycache__/database.cpython-310.pyc
-database/migrations/__pycache__/env.cpython-310.pyc
-database/migrations/versions/__pycache__/000f3ddc6d1d_.cpython-310.pyc
-database/migrations/versions/__pycache__/16053601212b_.cpython-310.pyc
-database/migrations/versions/__pycache__/5adee4cfc6e4_.cpython-310.pyc
-database/migrations/versions/__pycache__/6a71864f9b37_.cpython-310.pyc
-database/migrations/versions/__pycache__/b57b11534be1_.cpython-310.pyc
-database/migrations/versions/__pycache__/c0fc722ab60c_.cpython-310.pyc
-database/migrations/versions/__pycache__/c6185e18e52e_.cpython-310.pyc
-__pycache__/app.cpython-310.pyc
-*.pyc
