@@ -4,8 +4,9 @@ from sqlalchemy.orm import relationship, backref
 
 from .session import Session
 
+# Recrear la modelación que se tiene de las bases de datos en MySQL.
 
-class User(db.Model):
+class User(db.Model): # Datos del usuario
     __tablename__ = "user"
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(255), nullable=True)

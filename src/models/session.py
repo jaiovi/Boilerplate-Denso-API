@@ -5,6 +5,8 @@ from database import db, app_key
 from itsdangerous import want_bytes
 import jwt
 
+# Recrear la modelación que se tiene de las bases de datos en MySQL.
+
 class Session(db.Model):
     __tablename__ = "session"
 
