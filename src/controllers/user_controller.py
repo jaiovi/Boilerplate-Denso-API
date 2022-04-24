@@ -5,6 +5,7 @@ from flask_restful import Resource
 from src.services.user_service import UserServices
 from src.models import game
 
+# Se escribe en diccionario para convertirlo fácilmente en un JSON y que pueda ser devuelta correctamente como parte de la respuesta.
 class UserDto:
     partida = {
         "minijuego":fields.String(attribute="game.gameName"),
@@ -42,11 +43,20 @@ class UserDto:
     ConsPregunta={"details":fields.String}
     
 class UserController(Resource):
+
+    # Va a mapear al bojeto que está recibiendo en esto 
+    # @marshal_with(UserDTO.user_list, envelope="data") # Lo envuele en una variable que se llama data porque es una lista
+    # def get(self): # self es el this de Python
+    #     #return "GET UserController" # Regresa un string
+    #     return UserServices.get_user()
    
+
+    # return "POST UserController"
+        # sacar los datos que estoy recbiiendo
     def post(self):
-        data = request.json
+        data = request.json # request es una variable global
         print(data)
-        return UserServices.create_user(data["name"],data["email"], data["password"], data["password2"])
+        return UserServices.create_user(data["name"],data["email"], data["password"], data["password2"]) # manda como parámetro name y los demás valores
     
     @marshal_with(UserDto.response)
     def get(self):
