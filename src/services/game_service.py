@@ -25,8 +25,17 @@ class GameServices:
         ##psicometrico = Game.query.join(Question).filter(Answer.user_id==myid).all()
         print(psicometrico)
         return psicometrico
-'''
+
+    #UNITY
     @staticmethod
-    def execPregunta(mypreguntaid)
+    def execPregunta(mypreguntaid):
         pregunta = Question.query.filter_by(question_id=mypreguntaid).first()
-'''
+        return pregunta
+    
+    @staticmethod
+    def createRespuesta(scale_num,question_id,user_id):
+        new_answer = Answer(scale_num=scale_num,question_id=question_id,user_id=user_id)
+        db.session.add(new_answer)
+        db.session.commit()
+        print("respuesta anadida correctamente")
+        return 0
