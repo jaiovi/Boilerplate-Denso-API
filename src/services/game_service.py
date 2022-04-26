@@ -9,6 +9,7 @@ from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
 import sqlalchemy
+from datetime import date
 
 class GameServices:
     ###SERVICIOS NUEVOS
@@ -37,5 +38,14 @@ class GameServices:
         new_answer = Answer(scale_num=scale_num,question_id=question_id,user_id=user_id)
         db.session.add(new_answer)
         db.session.commit()
-        print("respuesta anadida correctamente")
+        print("Respuesta anadida correctamente")
+        return 0
+
+    @staticmethod
+    def createPartida(score, game_id, player_id): #identico a user_id
+        now = datetime.now()
+        new_partida = Partida(score=score,game_id=game_id,player_id=player_id, timeStamp=now)
+        db.session.add(new_answer)
+        db.session.commit()
+        print("Partida anadida correctamente")
         return 0

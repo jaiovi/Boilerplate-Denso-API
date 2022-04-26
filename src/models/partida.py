@@ -14,7 +14,7 @@ class Partida(db.Model):
     #asesor = relationship("User", backref=backref("candidatos", uselist=True))
     
     # nuevos
-    player_id = db.Column(db.Integer, db.ForeignKey("user.user_id")) #user
+    player_id = db.Column(db.Integer, db.ForeignKey("user.user_id")) #identico a user_id
     player = relationship("User", backref=backref("partidas", uselist=True))
 
     game_id = db.Column(db.Integer, db.ForeignKey("game.game_id"))
@@ -23,7 +23,7 @@ class Partida(db.Model):
     score = db.Column(db.Integer, nullable=True)
     time = db.Column(db.Integer, nullable=True)
 
-    timeStamp = db.Column(db.Date, nullable=True)
+    timeStamp = db.Column(db.Date, nullable=True) #hay que cambiar manualmente TimeStamp en MARIADB
     status = db.Column(db.String(255), nullable=True)
 
      # En pocas palabras, la función de relación es una forma conveniente para que sqlalchemy llame entre relaciones, y el parámetro backref proporciona una declaración de referencia inversa para la relación.

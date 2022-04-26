@@ -3,7 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController, DeleteCandidatoController, TablaController
-from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController, PreguntaController, RespuestaController
+from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController, PreguntaController, RespuestaController, PartidaController
 from flask_migrate import Migrate
 from database import db, bcrypt
 
@@ -41,6 +41,7 @@ api.add_resource(ConsultaPsicometricoController, "/user/<myid>/psicometrico")
 
 api.add_resource(PreguntaController, "/question/<mypreguntaid>")
 api.add_resource(RespuestaController, "/answer")
+api.add_resource(PartidaController, "/partida")
 """
 app
     - models
