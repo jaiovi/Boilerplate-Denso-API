@@ -46,3 +46,10 @@ class RespuestaController(Resource):
         data = request.json
         print(data)
         return GameServices.createRespuesta(data["scale_num"],data["question_id"], data["user_id"])
+
+
+class PartidaController(Resource):
+    def post(self):
+        data = request.json
+        print(data)
+        return GameServices.createPartida(data["score"],data["game_id"], data["player_id"]) #identico a user_id

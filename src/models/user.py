@@ -17,8 +17,8 @@ class User(db.Model): # Datos del usuario
     last_name = db.Column(db.String(255), nullable=True)
     role = db.Column(db.String(255), nullable=True)
     location = db.Column(db.String(255), nullable=True)
-    #age = db.Column(db.Integer, nullable=True)
-    birthDate = db.Column(db.Date, nullable=True)
+    
+    birthDate = db.Column(db.Date, nullable=True) #hay que cambiar manualmente TimeStamp en MARIADB
     
     managerPerm = db.Column(db.Boolean, nullable=True) ##para React 
     manager_id = db.Column(db.Integer, nullable=True) ##FK bd
