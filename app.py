@@ -2,8 +2,8 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
-from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController
-from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController
+from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController, DeleteCandidatoController, TablaController
+from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController, PreguntaController, RespuestaController
 from flask_migrate import Migrate
 from database import db, bcrypt
 
@@ -26,6 +26,11 @@ migrate = Migrate(app, db, directory="./database/migrations")
 api.add_resource(UserController, "/user")
 api.add_resource(CandidatoController, "/candidato/<myid>")
 api.add_resource(DeleteCandidatoController, "/candidato/<myid>/delete") #REVISAR
+
+#26 abril
+api.add_resource(TablaController, "/candidato/<mylocation>/tabla")
+
+
 api.add_resource(UserLoginController, "/user/login")
 
 #incio de clase 6 abril
@@ -34,7 +39,8 @@ api.add_resource(UserLoginController, "/user/login")
 api.add_resource(ConsultaMinijuegoController, "/user/<myid>/minigame")
 api.add_resource(ConsultaPsicometricoController, "/user/<myid>/psicometrico")
 
-
+api.add_resource(PreguntaController, "/question/<mypreguntaid>")
+api.add_resource(RespuestaController, "/answer")
 """
 app
     - models

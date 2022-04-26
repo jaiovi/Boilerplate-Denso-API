@@ -31,7 +31,7 @@ class UserDto:
         "message":fields.String
     }
 
-    #STORED PROCEDURES
+    '''#STORED PROCEDURES
     ConsMinijuego = {
         "minijuego":fields.String,
         "score":fields.Integer
@@ -40,21 +40,14 @@ class UserDto:
         "seccionPsico":fields.String,
         "score":fields.Integer
     }
-    ConsPregunta={"details":fields.String}
+    ConsPregunta={"details":fields.String}'''
     
+
 class UserController(Resource):
 
-    # Va a mapear al bojeto que está recibiendo en esto 
-    # @marshal_with(UserDTO.user_list, envelope="data") # Lo envuele en una variable que se llama data porque es una lista
-    # def get(self): # self es el this de Python
-    #     #return "GET UserController" # Regresa un string
-    #     return UserServices.get_user()
-   
-
-    # return "POST UserController"
-        # sacar los datos que estoy recbiiendo
     def post(self):
-        data = request.json # request es una variable global
+        data = request.json 
+        #request es una variable global
         print(data)
         return UserServices.create_user(data["name"],data["email"], data["password"], data["password2"]) # manda como parámetro name y los demás valores
     
@@ -69,12 +62,12 @@ class UserControllerFindUser(Resource):
         data = request.json
         return UserServices.get_user(data["user_id"])
 
-
 class UserLoginController(Resource):
     def post(self):
         data = request.json
         print(data)
         return UserServices.login(data["email"], data["password"])
+
 
 class CandidatoController(Resource):
     @marshal_with(UserDto.response)
@@ -85,3 +78,9 @@ class DeleteCandidatoController(Resource): #REVISAR
     @marshal_with(UserDto.response)
     def get(self, myid):
         return UserServices.delete_user_candidate(myid)
+
+
+class TablaController(Resource):
+    @marshal_with(UserDto.user)
+    def get(self, mylocation):
+        return UserServices.tabla(mylocation)
