@@ -76,3 +76,9 @@ class UserServices:
         candidato.execute()
         #https://stackoverflow.com/questions/9882358/how-to-delete-rows-from-a-table-using-an-sqlalchemy-query-without-orm
         return {"message":"Candidato eliminado", "data":[]}
+
+    @staticmethod
+    def tabla(mylocation):
+        print(mylocation)
+        candidato = User.query.filter_by(location=mylocation, managerPerm=0).all()
+        return candidato#{"message":"Candidatos de locacion dados", "data":candidato}

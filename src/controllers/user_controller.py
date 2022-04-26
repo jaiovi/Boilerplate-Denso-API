@@ -30,7 +30,7 @@ class UserDto:
         "message":fields.String
     }
 
-    #STORED PROCEDURES
+    '''#STORED PROCEDURES
     ConsMinijuego = {
         "minijuego":fields.String,
         "score":fields.Integer
@@ -39,10 +39,10 @@ class UserDto:
         "seccionPsico":fields.String,
         "score":fields.Integer
     }
-    ConsPregunta={"details":fields.String}
+    ConsPregunta={"details":fields.String}'''
     
+
 class UserController(Resource):
-   
     def post(self):
         data = request.json
         print(data)
@@ -59,12 +59,12 @@ class UserControllerFindUser(Resource):
         data = request.json
         return UserServices.get_user(data["user_id"])
 
-
 class UserLoginController(Resource):
     def post(self):
         data = request.json
         print(data)
         return UserServices.login(data["email"], data["password"])
+
 
 class CandidatoController(Resource):
     @marshal_with(UserDto.response)
@@ -75,3 +75,9 @@ class DeleteCandidatoController(Resource): #REVISAR
     @marshal_with(UserDto.response)
     def get(self, myid):
         return UserServices.delete_user_candidate(myid)
+
+
+class TablaController(Resource):
+    @marshal_with(UserDto.user)
+    def get(self, mylocation):
+        return UserServices.tabla(mylocation)
