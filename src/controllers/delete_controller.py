@@ -2,7 +2,7 @@ from email import message
 from flask import request
 from flask_restful import fields, marshal_with
 from flask_restful import Resource
-from src.services.game_service import GameServices
+from src.services.delete_service import DeleteServices
 from src.models import game
 
 class DeleteDto:
@@ -13,9 +13,9 @@ class DeleteDto:
 class DeleteUserController(Resource):
     @marshal_with(DeleteDto.response)
     def get(self, myid):
-        return GameServices.execDeleteUser(myid)
+        return DeleteServices.deleteUser(myid)
 
 class DeleteTestsController(Resource):
     @marshal_with(DeleteDto.response)
     def get(self, myid):
-        return GameServices.execDeleteTests(myid)
+        return DeleteServices.deleteTests(myid)
