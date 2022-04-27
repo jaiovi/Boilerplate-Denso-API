@@ -45,7 +45,7 @@ class UserServices:
         db.session.add(new_user)
         db.session.commit()
 
-        mensajito = string("Usuario creado correctamente con managerPerm "+ managerPerm)
+        mensajito = "Usuario creado correctamente con managerPerm "+ str(managerPerm)
         return {"message":mensajito, "success":True}
 
     @staticmethod
