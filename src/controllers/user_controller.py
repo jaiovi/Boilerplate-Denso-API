@@ -82,12 +82,6 @@ class CandidatoController(Resource):
     def get(self, myid):
         return UserServices.get_user_candidate(myid)
 
-class DeleteCandidatoController(Resource): #REVISAR
-    @marshal_with(UserDto.response)
-    def get(self, myid):
-        return UserServices.delete_user_candidate(myid)
-
-
 class TablaController(Resource):
     @marshal_with(UserDto.user)
     def get(self, mylocation):

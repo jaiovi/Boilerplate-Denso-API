@@ -69,13 +69,6 @@ class UserServices:
         #candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaPerfil(:param)"), {"param":user_id}).fetchall()
         print(candidato)
         return {"message":"Candidato existente", "data":candidato}
-    
-    @staticmethod #REVISAR
-    def delete_user_candidate(myid):
-        candidato = User.query.delete(myid=user_id, managerPerm=0).first()
-        candidato.execute()
-        #https://stackoverflow.com/questions/9882358/how-to-delete-rows-from-a-table-using-an-sqlalchemy-query-without-orm
-        return {"message":"Candidato eliminado", "data":[]}
 
     @staticmethod
     def tabla(mylocation):
