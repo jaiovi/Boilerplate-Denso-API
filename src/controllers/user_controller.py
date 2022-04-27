@@ -19,10 +19,12 @@ class UserDto:
         "birthDate":fields.DateTime,
         "role":fields.String,
         "location":fields.String,
+        "department":fields.String,
         "partidas": fields.List(fields.Nested(partida)),
         
         "managerPerm":fields.Boolean,
         "aplicantes":fields.List(fields.Nested(super)),
+        "code":fields.String
     }
     ##OJO a aplicantes, posible punto de error
 
@@ -78,3 +80,8 @@ class TablaController(Resource):
     @marshal_with(UserDto.user)
     def get(self, mylocation):
         return UserServices.tabla(mylocation)
+
+class UnityController(Resource):
+    @marshal_with(UserDto.user)
+    def get(self, mycode):
+        return UserServices.unity(mycode)

@@ -2,7 +2,7 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
-from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController, TablaController
+from src.controllers.user_controller import UserController, UserControllerFindUser, UserLoginController, CandidatoController, TablaController, UnityController
 from src.controllers.game_controller import ConsultaMinijuegoController, ConsultaPsicometricoController, PreguntaController, RespuestaController, PartidaController
 from src.controllers.delete_controller import DeleteUserController, DeleteTestsController
 from flask_migrate import Migrate
@@ -43,6 +43,7 @@ api.add_resource(DeleteTestsController,"/delete/tests/<myid>")
 api.add_resource(PreguntaController, "/question/<mypreguntaid>")
 api.add_resource(RespuestaController, "/answer")
 api.add_resource(PartidaController, "/partida")
+api.add_resource(UnityController, "/unity/<mycode>")
 """
 app
     - models
