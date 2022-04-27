@@ -78,12 +78,19 @@ class UserServices:
         return {"message":"Candidato existente", "data":candidato}
 
     @staticmethod
-    def tabla(mylocation):
-        print(mylocation)
-        if(len(mylocation)==4): #MTY% -- like
-            candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaLikeLocation(:param)"), {"param":mylocation}).fetchall()
-        else: #MTY Departamento
+    def tabla(mylocation, mydepartment):
+        print(mylocation + " " + mydepartment)
+        #if(len(mylocation)==4): #MTY% -- like
+        #    candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaLikeLocation(:param)"), {"param":mylocation}).fetchall()
+        #else: #MTY Departamento
+        if(mylocation=="-" and mydepartment=="-"): #busqueda global
+            candidato = User.query.filter_by(managerPerm=0).all()
+        elif(mylocation=="-"):
+            candidato = User.query.filter_by(department=mydepartment, managerPerm=0).all()
+        elif(mydepartment=="-"):
             candidato = User.query.filter_by(location=mylocation, managerPerm=0).all()
+        else:
+            candidato = User.query.filter_by(location=mylocation, department=mydepartment, managerPerm=0).all()
         return candidato#{"message":"Candidatos de locacion dados", "data":candidato}
 
     @staticmethod

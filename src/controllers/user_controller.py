@@ -78,8 +78,8 @@ class CandidatoController(Resource):
 
 class TablaController(Resource):
     @marshal_with(UserDto.user)
-    def get(self, mylocation):
-        return UserServices.tabla(mylocation)
+    def get(self, mylocation, mydepartment):
+        return UserServices.tabla(mylocation, mydepartment)
 
 class UnityController(Resource):
     @marshal_with(UserDto.user)
