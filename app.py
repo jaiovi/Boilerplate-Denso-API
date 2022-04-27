@@ -29,7 +29,7 @@ api.add_resource(UserLoginController, "/user/login")
 #incio de clase 6 abril
 #api.add_resource(UserControllerFindUser, "/user/search/<user_id>")
 
-api.add_resource(TablaController, "/candidato/<mylocation>/tabla")
+api.add_resource(TablaController, "/candidato/<mylocation>/<mydepartment>/tabla")
 
 #perfil.js
 api.add_resource(CandidatoController, "/candidato/<myid>")
