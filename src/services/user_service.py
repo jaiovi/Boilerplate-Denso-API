@@ -30,17 +30,21 @@ class UserServices:
         return {"message":"Usuario encontrado", "data":user}
 
     @staticmethod
-    def create_user(name, last_name, role, location, birthDate, email, password, validate_password): #nos falta age data["managerPerm"]
+    def create_user(name, last_name, role, location, department, birthDate, email, password, validate_password): #nos falta age data["managerPerm"]
         managerPerm=0
         if re.search("^\w+(@na\.denso\.com)$", email):
             managerPerm=1
             #return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
         print(managerPerm)
 
+        letters = string.ascii_letters
+        code = ''.join(random.choice(letters) for i in range(6)) 
+        print(code)
+
         if password != validate_password:
             return {"message":"Las contraseñas son diferentes.", "success":False}, 400
 
-        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm, birthDate=birthDate) #nos falta age manager_id=manager_id,
+        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, department=department, managerPerm=managerPerm, birthDate=birthDate, code=code) #nos falta age manager_id=manager_id,
 
         db.session.add(new_user)
         db.session.commit()
@@ -76,5 +80,13 @@ class UserServices:
     @staticmethod
     def tabla(mylocation):
         print(mylocation)
-        candidato = User.query.filter_by(location=mylocation, managerPerm=0).all()
+        if(len(mylocation)==4): #MTY% -- like
+            candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaLikeLocation(:param)"), {"param":mylocation}).fetchall()
+        else: #MTY Departamento
+            candidato = User.query.filter_by(location=mylocation, managerPerm=0).all()
         return candidato#{"message":"Candidatos de locacion dados", "data":candidato}
+
+    @staticmethod
+    def unity(mycode):
+        candidato = User.query.filter_by(code=mycode, managerPerm=0).first()
+        return candidato
