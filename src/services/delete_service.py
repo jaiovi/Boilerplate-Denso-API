@@ -14,6 +14,7 @@ from datetime import date
 class DeleteServices:
     @staticmethod
     def deleteUser(myid):
+        #db.session.delete(arreglo_almacenado) - query normal
         psicometrico = db.session.execute(sqlalchemy.text("CALL SP_DeleteUser(:param)"), {"param":myid}).fetchall()
         print(psicometrico)
         return psicometrico

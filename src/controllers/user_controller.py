@@ -49,7 +49,7 @@ class UserController(Resource):
         data = request.json 
         #request es una variable global
         print(data)
-        return UserServices.create_user(data["name"],data["email"], data["password"], data["password2"]) # manda como parámetro name y los demás valores
+        return UserServices.create_user(data["name"], data["last_name"], data["role"], data["location"], data["birthDate"], data["email"], data["password"], data["validate_password"]) # manda como parámetro name y los demás valores
     
     @marshal_with(UserDto.response)
     def get(self):
