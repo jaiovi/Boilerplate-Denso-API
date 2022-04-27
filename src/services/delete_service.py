@@ -16,11 +16,13 @@ class DeleteServices:
     def deleteUser(myid):
         #db.session.delete(arreglo_almacenado) - query normal
         psicometrico = db.session.execute(sqlalchemy.text("CALL SP_DeleteUser(:param)"), {"param":myid}).fetchall()
-        print(psicometrico)
-        return psicometrico
+        if not psicometrico:
+            return {"message":"Usuario inexistente"}
+        return {"message":"Usuaario completo eliminado"}
 
     @staticmethod
     def deleteTests(myid):
         psicometrico = db.session.execute(sqlalchemy.text("CALL SP_DeleteTests(:param)"), {"param":myid}).fetchall()
-        print(psicometrico)
-        return psicometrico
+        if not psicometrico:
+            return {"message":"Usuario inexistente"}
+        return {"message":"Usuario con examen limpio"}

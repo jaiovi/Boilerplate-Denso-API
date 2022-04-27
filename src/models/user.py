@@ -48,7 +48,7 @@ class User(db.Model): # Datos del usuario
             session = Session.open(auth_token)
             
             if session:
-                user = User.query.filter_by(id=session.get("user_id")).first()
+                user = User.query.filter_by(user_id=session.get("user_id")).first()
                 return user
             return None
         else:
