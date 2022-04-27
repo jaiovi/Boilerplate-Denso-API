@@ -8,6 +8,7 @@ from src.models.answer import Answer
 from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
+import re
 import sqlalchemy
 
 class UserServices:
@@ -29,21 +30,23 @@ class UserServices:
         return {"message":"Usuario encontrado", "data":user}
 
     @staticmethod
-    def create_user(name, email, password, validate_password, last_name, role, location, managerPerm): #nos falta age
-
-        if email != "^\w+(@na.denso.com)$":
-            return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
+    def create_user(name, last_name, role, location, birthDate, email, password, validate_password): #nos falta age data["managerPerm"]
+        managerPerm=0
+        if re.search("^\w+(@na\.denso\.com)$", email):
+            managerPerm=1
+            #return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
+        print(managerPerm)
 
         if password != validate_password:
             return {"message":"Las contraseñas son diferentes.", "success":False}, 400
-         
-        #new_user = User(name=name, email=email, password=password)
-        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm, manager_id=manager_id) #nos falta age
+
+        new_user = User(name=name, email=email, password=password, last_name=last_name, role=role, location=location, managerPerm=managerPerm, birthDate=birthDate) #nos falta age manager_id=manager_id,
 
         db.session.add(new_user)
         db.session.commit()
 
-        return {"message":"Usuario creado correctamente", "success":True}
+        mensajito = string("Usuario creado correctamente con managerPerm "+ managerPerm)
+        return {"message":mensajito, "success":True}
 
     @staticmethod
     def login(email, password):
