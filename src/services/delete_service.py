@@ -27,7 +27,7 @@ class DeleteServices:
     @staticmethod
     def deleteTests(myid):
         #psicometrico = Partida.query.filter(user_id==myid).delete() https://stackoverflow.com/questions/27158573/how-to-delete-a-record-by-id-in-flask-sqlalchemy
-        comprobar = Partida.query.filter_by(player_id=myid).first()
+        comprobar = Answer.query.filter_by(user_id=myid).first()
         if comprobar:
             ejecutar = db.session.execute(sqlalchemy.text("CALL SP_DeleteTests(:param)"), {"param":myid}).fetchall()
             print(myid)
