@@ -10,21 +10,28 @@ from database import db
 
 import sqlalchemy
 from datetime import date
+from sqlalchemy import delete
 
 class DeleteServices:
     @staticmethod
     def deleteUser(myid):
-        #db.session.delete(arreglo_almacenado) - query normal
-        psicometrico = db.session.execute(sqlalchemy.text("CALL SP_DeleteUser(:param)"), {"param":myid}).fetchall()
-        print(myid)
-        if not psicometrico:
-            return {"message":"Usuario inexistente"}
-        return {"message":"Usuario completo eliminado"}
+        comprobar = User.query.filter_by(user_id=myid, managerPerm=0).first()
+        if comprobar:
+            ejecutar = db.session.execute(sqlalchemy.text("CALL SP_DeleteUser(:param)"), {"param":myid}).fetchall()
+            print(myid)
+            db.session.commit()
+            return {"message":"Usuario completo eliminado"}
+        else:
+            return {"message":"Usuario inexistente para eliminar"}
 
     @staticmethod
     def deleteTests(myid):
-        db.session.execute(sqlalchemy.text("CALL SP_DeleteTests(:param)"), {"param":myid}).fetchall()
-        print(myid)
-        if not psicometrico:
-            return {"message":"Usuario inexistente"}
-        return {"message":"Usuario con examen limpio"}
+        #psicometrico = Partida.query.filter(user_id==myid).delete() https://stackoverflow.com/questions/27158573/how-to-delete-a-record-by-id-in-flask-sqlalchemy
+        comprobar = Partida.query.filter_by(player_id=myid).first()
+        if comprobar:
+            ejecutar = db.session.execute(sqlalchemy.text("CALL SP_DeleteTests(:param)"), {"param":myid}).fetchall()
+            print(myid)
+            db.session.commit()
+            return {"message":"Examenes y minijuegos limpiados"}
+        else:
+            return {"message":"Usuario sin examenes ni minijuegos"}
