@@ -91,7 +91,21 @@ class UserServices:
             candidato = User.query.filter_by(location=mylocation, managerPerm=0).all()
         else:
             candidato = User.query.filter_by(location=mylocation, department=mydepartment, managerPerm=0).all()
+        print(candidato)
         return candidato#{"message":"Candidatos de locacion dados", "data":candidato}
+
+    @staticmethod
+    def kpi(mylocation, mydepartment):
+        role = db.session.execute(sqlalchemy.text("CALL SP_ModaRole(:param , :param2)"), {"param":mylocation , "param2":mydepartment}).scalar()
+        minigame = db.session.execute(sqlalchemy.text("CALL SP_AvgMinigame(:param , :param2)"), {"param":mylocation , "param2":mydepartment}).scalar()
+        psicometrico = db.session.execute(sqlalchemy.text("CALL SP_AvgPsicometrico(:param , :param2)"), {"param":mylocation , "param2":mydepartment}).scalar()
+        
+        print(str(role) +" "+ str(minigame) +" "+ str(psicometrico))
+        return{
+        "moda_carrera":role,
+        "media_videojuego":minigame,
+        "media_psicometrico":psicometrico
+        }
 
     @staticmethod
     def unity(mycode):
