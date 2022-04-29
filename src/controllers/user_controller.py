@@ -33,6 +33,12 @@ class UserDto:
         "message":fields.String
     }
 
+    kpi = {
+        "moda_carrera":fields.String,
+        "media_videojuego":fields.Integer,
+        "media_psicometrico":fields.Integer
+    }
+
     '''#STORED PROCEDURES
     ConsMinijuego = {
         "minijuego":fields.String,
@@ -80,6 +86,11 @@ class TablaController(Resource):
     @marshal_with(UserDto.user)
     def get(self, mylocation, mydepartment):
         return UserServices.tabla(mylocation, mydepartment)
+
+class KPIController(Resource):
+    @marshal_with(UserDto.kpi)
+    def get(self, mylocation, mydepartment):
+        return UserServices.kpi(mylocation, mydepartment)
 
 class UnityController(Resource):
     @marshal_with(UserDto.user)
