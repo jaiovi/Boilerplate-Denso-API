@@ -9,7 +9,7 @@ from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
 import sqlalchemy
-from datetime import date
+from datetime import datetime
 
 class GameServices:
     ###SERVICIOS NUEVOS
@@ -45,7 +45,7 @@ class GameServices:
     def createPartida(score, game_id, player_id): #identico a user_id
         now = datetime.now()
         new_partida = Partida(score=score,game_id=game_id,player_id=player_id, timeStamp=now)
-        db.session.add(new_answer)
+        db.session.add(new_partida)
         db.session.commit()
         print("Partida anadida correctamente")
         return 0
