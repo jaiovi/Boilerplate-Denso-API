@@ -75,6 +75,8 @@ class UserServices:
         candidato = User.query.filter_by(user_id=user_id, managerPerm=0).first()
         #candidato = db.session.execute(sqlalchemy.text("CALL SP_ConsultaPerfil(:param)"), {"param":user_id}).fetchall()
         print(candidato)
+        if not candidato:
+            return {"message":"Candidato no existe o es admin", "success":False}
         return {"message":"Candidato existente", "data":candidato}
 
     @staticmethod
