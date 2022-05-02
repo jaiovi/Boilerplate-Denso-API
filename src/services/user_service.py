@@ -59,7 +59,7 @@ class UserServices:
         db.session.add(new_user)
         db.session.commit()
 
-        mensajito = "Usuario creado correctamente con managerPerm "+ str(managerPerm)
+        mensajito = "Usuario creado correctamente con managerPerm "+ str(managerPerm) + " y codigo " + code
         return {"message":mensajito, "success":True}
 
     # Hace la función de Login
