@@ -8,8 +8,12 @@ from src.models.answer import Answer
 from src.models.test import Test #ahi el error, aqui correcion 6a
 from database import db
 
-import re
-import sqlalchemy
+import re # Para validar el correo
+# Para generar el código de acceso
+import string
+import random
+
+import sqlalchemy # Para la DB y SQL
 
 class UserServices:
     '''
@@ -21,6 +25,7 @@ class UserServices:
         if not "namex" in data:
     '''        
 
+    # Hace el GET del usuario.
     @staticmethod
     def get_user():
         user = User.current_user()
@@ -29,18 +34,23 @@ class UserServices:
 
         return {"message":"Usuario encontrado", "data":user}
 
+    # Crea el user.
     @staticmethod
     def create_user(name, last_name, role, location, department, birthDate, email, password, validate_password): #nos falta age data["managerPerm"]
-        managerPerm=0
-        if re.search("^\w+(@na\.denso\.com)$", email):
-            managerPerm=1
+        managerPerm=0 # NO tiene permisos de administrador.
+
+        # Valida que el correo sea de Denso para que tenga permisos de administrador.
+        if re.search("^\w+(@na\.denso\.com)$", email): # Correo de Denso
+            managerPerm=1 # Tiene permisos de administrador.
             #return {"message":"Su dirección de correo no tiene los permisos para acceder.", "success":False}, 400
         print(managerPerm)
 
-        letters = string.ascii_letters
-        code = ''.join(random.choice(letters) for i in range(6)) 
-        print(code)
+        # Generar el código de acceso del usuario
+        characters = string.ascii_letters + string.digits # Que el código sea alfanumérico
+        code = ''.join(random.choice(characters) for i in range(6)) # Genera el código con una longitud de 6 carácteres.
+        print(code) # Imprime el código.
 
+        # Valida que las contraseñas sean iguales.
         if password != validate_password:
             return {"message":"Las contraseñas son diferentes.", "success":False}, 400
 
@@ -52,16 +62,20 @@ class UserServices:
         mensajito = "Usuario creado correctamente con managerPerm "+ str(managerPerm)
         return {"message":mensajito, "success":True}
 
+    # Hace la función de Login
     @staticmethod
-    def login(email, password):
+    def login(email, password): # Recibe el email y la contraseña
         user = User.query.filter_by(email=email).first()
 
+        # Valida si hay user existente.
         if not user:
             return {"message":"Usuario no encontrado", "success":False}, 404
         
+        # Valida si la contraseña coincide.
         if not user.check_password(password):
             return {"message":"Contraseña incorrecta", "success":False}, 404
 
+        # Sesiones
         session = Session.open()
         session.set("user_id",user.user_id )
         session.save()
@@ -70,6 +84,7 @@ class UserServices:
         
         return {"message":"Login exitoso","token":session.get("token"), "success":True} 
 
+    
     @staticmethod
     def get_user_candidate(user_id):
         candidato = User.query.filter_by(user_id=user_id, managerPerm=0).first()
