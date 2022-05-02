@@ -39,6 +39,12 @@ class UserDto:
         "media_psicometrico":fields.Integer
     }
 
+    userUnity = {
+        "user_id":fields.Integer,
+        "name":fields.String,
+        "last_name":fields.String
+    }
+
     '''#STORED PROCEDURES
     ConsMinijuego = {
         "minijuego":fields.String,
@@ -93,6 +99,6 @@ class KPIController(Resource):
         return UserServices.kpi(mylocation, mydepartment)
 
 class UnityController(Resource):
-    @marshal_with(UserDto.user)
+    @marshal_with(UserDto.userUnity)
     def get(self, mycode):
         return UserServices.unity(mycode)
