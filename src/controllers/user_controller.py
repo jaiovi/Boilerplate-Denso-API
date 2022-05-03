@@ -13,6 +13,7 @@ class UserDto:
     }
 
     user = {
+        "user_id":fields.Integer,
         "name":fields.String,
         "last_name":fields.String(attribute="last_name"),
         "email":fields.String,
