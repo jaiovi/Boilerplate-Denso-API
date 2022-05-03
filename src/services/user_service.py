@@ -82,7 +82,7 @@ class UserServices:
 
         print(session.get("token"))
         
-        return {"message":"Login exitoso","token":session.get("token"), "success":True} 
+        return {"message":"Login exitoso. Recargue la página","token":session.get("token"), "success":True} 
 
     
     @staticmethod
