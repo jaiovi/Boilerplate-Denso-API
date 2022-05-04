@@ -126,7 +126,7 @@ class UserServices:
 
     @staticmethod
     def unity(mycode):
-        candidato = User.query.filter_by(code=mycode, managerPerm=0).last()
+        candidato = User.query.filter_by(code=mycode, managerPerm=0).first()
         print(candidato)
         if not candidato:
             return False
