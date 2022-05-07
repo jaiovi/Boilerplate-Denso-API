@@ -65,11 +65,11 @@ class UserServices:
     # Hace la función de Login
     @staticmethod
     def login(email, password): # Recibe el email y la contraseña
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email, managerPerm=1).first() #permite iniciar sesion a managers
 
         # Valida si hay user existente.
         if not user:
-            return {"message":"Usuario no encontrado", "success":False}, 404
+            return {"message":"Usuario no encontrado o no es manager", "success":False}, 404
         
         # Valida si la contraseña coincide.
         if not user.check_password(password):
