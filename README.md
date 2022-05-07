@@ -28,6 +28,8 @@ Construccion propia en los modelos. Para que todos lo tengan a mano para reto eq
 8. Corre el servidor
     python -m flask run
 
+9. Modificar server SI NO PERMITE GET/USER
+    Hay que cambiar manualmente user.BirthDate y partida.timeStamp de Date->TimeStamp en MARIADB
 
 Inicar de nuevo el proyecto 
 1. Iniciar el ambiente virtual **IMPORTANTE**

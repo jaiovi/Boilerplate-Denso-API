@@ -20,7 +20,7 @@ class User(db.Model): # Datos del usuario
 
     department = db.Column(db.String(255), nullable=True)
     
-    birthDate = db.Column(db.Date, nullable=True) #hay que cambiar manualmente TimeStamp en MARIADB
+    birthDate = db.Column(db.DateTime, nullable=True) #hay que cambiar manualmente TimeStamp en MARIADB
     managerPerm = db.Column(db.Boolean, nullable=True) ##para React 
     manager_id = db.Column(db.Integer, nullable=True) ##FK bd
     # manager = relationship("User", backref=backref("Aplicantes", uselist=True))

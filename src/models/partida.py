@@ -7,13 +7,6 @@ class Partida(db.Model):
     __tablename__ = "partida"
     par_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     
-    # a quitarlos
-    #email = db.Column(db.String(255), nullable=True)
-
-    #asesor_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    #asesor = relationship("User", backref=backref("candidatos", uselist=True))
-    
-    # nuevos
     player_id = db.Column(db.Integer, db.ForeignKey("user.user_id")) #identico a user_id
     player = relationship("User", backref=backref("partidas", uselist=True))
 
@@ -21,12 +14,10 @@ class Partida(db.Model):
     game = relationship("Game", backref=backref("partidas", uselist=True))
 
     score = db.Column(db.Integer, nullable=True)
-    #time = db.Column(db.Integer, nullable=True)
 
     timeStamp = db.Column(db.Date, nullable=True) #hay que cambiar manualmente TimeStamp en MARIADB
-    #status = db.Column(db.String(255), nullable=True)
 
-     # En pocas palabras, la función de relación es una forma conveniente para que sqlalchemy llame entre relaciones, y el parámetro backref proporciona una declaración de referencia inversa para la relación.
+    # En pocas palabras, la función de relación es una forma conveniente para que sqlalchemy llame entre relaciones, y el parámetro backref proporciona una declaración de referencia inversa para la relación.
     
     # backref agrega una columna 
 
