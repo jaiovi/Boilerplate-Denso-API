@@ -6,7 +6,7 @@ from itsdangerous import want_bytes
 import jwt
 
 # Recrear la modelación que se tiene de las bases de datos en MySQL.
-
+# Codigo que hace que se guarde una sesion, que luego expirara despues de que pase una semana
 class Session(db.Model):
     __tablename__ = "session"
 
